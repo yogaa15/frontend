@@ -1,0 +1,42 @@
+/* src/styles/index.css */
+
+/* 1. CSS Variables (Design Tokens) */
+:root {
+  --color-primary: #c6a24c;       /* Warna Gold / Emas */
+  --color-primary-hover: #b08d3b;
+  --color-text-main: #1e293b;     /* Warna Teks Utama */
+  --color-text-muted: #8d8f98;    /* Warna Teks Muted/Abo-abu */
+  --color-bg-main: #f8fafc;       /* Warna Latar Belakang */
+  --color-card-bg: #ffffff;
+  --color-border: #e2e8f0;
+  --color-danger: #ef4444;
+  --color-success: #22c55e;
+  
+  --font-main: 'Inter', sans-serif;
+  --font-heading: 'Fraunces', serif;
+}
+
+/* 2. Reset CSS dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}

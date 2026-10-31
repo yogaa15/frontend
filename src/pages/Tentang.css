@@ -1,0 +1,406 @@
+/* =============================================
+   Tentang.css — Halaman Tentang Kami Selaras
+   Modern luxury, Magelang branch showcase,
+   values grid, interactive maps & contacts
+   ============================================= */
+
+.lmj-about-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 0 60px 0;
+  animation: aboutFadeIn 0.6s ease-out both;
+}
+
+@keyframes aboutFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── HERO SECTION ─── */
+.lmj-about-hero {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 48px auto;
+  padding: 30px 20px;
+}
+
+.lmj-about-hero .eyebrow {
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  font-weight: 600;
+}
+
+.lmj-about-hero .h1-title {
+  margin: 12px 0 16px 0;
+  font-size: clamp(28px, 4.5vw, 44px);
+  line-height: 1.2;
+}
+
+.lmj-about-hero .subtitle {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ─── STATS COUNTER BAR ─── */
+.lmj-about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 56px;
+}
+
+@media (max-width: 900px) {
+  .lmj-about-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .lmj-about-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lmj-about-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px var(--shadow-color);
+}
+
+.lmj-about-stat-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(198, 162, 76, 0.15);
+}
+
+.lmj-about-stat-val {
+  font-family: var(--font-fraunces);
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.lmj-about-stat-lbl {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.lmj-about-stat-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ─── STORY & VALUES GRID ─── */
+.lmj-about-story {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 36px;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 44px 38px;
+  margin-bottom: 56px;
+  box-shadow: 0 14px 40px var(--shadow-color);
+}
+
+@media (max-width: 900px) {
+  .lmj-about-story {
+    grid-template-columns: 1fr;
+    padding: 30px 22px;
+  }
+}
+
+.lmj-about-story-text h2 {
+  font-family: var(--font-fraunces);
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.lmj-about-story-text p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.lmj-about-story-img-box {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(198, 162, 76, 0.25);
+  height: 340px;
+}
+
+.lmj-about-story-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.lmj-about-story-img-box:hover .lmj-about-story-img {
+  transform: scale(1.05);
+}
+
+.lmj-about-story-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: var(--card-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--card-glass-border);
+  padding: 14px 18px;
+  border-radius: 14px;
+  color: var(--text);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 24px var(--shadow-color);
+}
+
+/* ─── PILAR KEUNGGULAN (3 KOLOM) ─── */
+.lmj-values-section {
+  margin-bottom: 56px;
+}
+
+.lmj-values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 850px) {
+  .lmj-values-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lmj-value-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px 26px;
+  transition: all 0.3s ease;
+}
+
+.lmj-value-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 34px rgba(198, 162, 76, 0.12);
+}
+
+.lmj-value-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(198, 162, 76, 0.12);
+  border: 1px solid rgba(198, 162, 76, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.lmj-value-card h3 {
+  font-family: var(--font-fraunces);
+  font-size: 20px;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.lmj-value-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ─── SECTION LOKASI & MAGELANG SHOWCASE ─── */
+.lmj-locations-section {
+  margin-bottom: 56px;
+}
+
+.lmj-magelang-hero-card {
+  background: linear-gradient(135deg, rgba(198, 162, 76, 0.1) 0%, var(--surface) 60%, rgba(198, 162, 76, 0.05) 100%);
+  border: 1.5px solid var(--gold);
+  border-radius: 24px;
+  padding: 36px;
+  margin-bottom: 30px;
+  box-shadow: 0 16px 44px var(--shadow-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.lmj-magelang-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold);
+  color: var(--btn-text);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.lmj-magelang-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (max-width: 850px) {
+  .lmj-magelang-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lmj-magelang-title {
+  font-family: var(--font-fraunces);
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.lmj-magelang-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+
+.lmj-magelang-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.lmj-magelang-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.lmj-magelang-item span:first-child {
+  font-size: 18px;
+  color: var(--gold);
+  line-height: 1.2;
+}
+
+.lmj-magelang-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.lmj-magelang-map-box {
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+}
+
+.lmj-magelang-map-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+/* Secondary Locations Grid */
+.lmj-other-locations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 800px) {
+  .lmj-other-locations-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lmj-location-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.lmj-location-card:hover {
+  border-color: rgba(198, 162, 76, 0.4);
+  transform: translateY(-4px);
+}
+
+.lmj-location-card h4 {
+  font-family: var(--font-fraunces);
+  font-size: 18px;
+  color: var(--text);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lmj-location-card p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+
+.lmj-location-phone {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 600;
+  display: block;
+}
+
+/* ─── CONTACT SECTION ─── */
+.lmj-about-contact-wrap {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 40px 32px;
+  box-shadow: 0 16px 40px var(--shadow-color);
+}
+
+.lmj-about-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+@media (max-width: 800px) {
+  .lmj-about-contact-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nama_lengkap": "Administrator Salsa",
+    "email": "admin@selaras.id",
+    "no_hp": "0812-3344-5566",
+    "password": "$2b$10$FX7pw1U6xvbc1mG88qe2UeSKzDq0WZ6jMBfygrLLS5NaCUEvtvnhK",
+    "role": "admin"
+  },
+  {
+    "id": 3,
+    "nama_lengkap": "yoga adirangga",
+    "email": "yoga.adirangga15@gmail.com",
+    "no_hp": "08512376123",
+    "password": "$2b$10$8UVDIx8mphodDdGLeD5B1OUNTrA1jInI4XGlYR6zQYBD/QZtjSBr2",
+    "role": "customer"
+  }
+]

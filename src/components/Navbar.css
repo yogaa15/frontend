@@ -1,0 +1,453 @@
+/* ==========================================================================
+   DAFTAR ISI NAVBAR.CSS (TABLE OF CONTENTS)
+   ==========================================================================
+   1. STRUKTUR UTAMA (Sticky Header & Container Navbar)
+   2. LOGO & BRANDING (Logo Mark, Animasi Emas, Wordmark, & Tagline)
+   3. MENU NAVIGASI UTAMA (Link Menu & Efek Garis Bawah Animasi)
+   4. OTENTIKASI & PROFIL PENGGUNA (Guest State & Logged-in State)
+   5. TOMBOL PENGALIH TEMA (Dark Mode / Light Mode Toggle)
+   6. RESPONSIVE DESIGN (Penyesuaian Laptop, Tablet, & Smartphone)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. STRUKTUR UTAMA (STICKY HEADER & CONTAINER)
+   ========================================================================== */
+
+/* Header terluar: menempel di atas layar (sticky) dengan efek kaca (glassmorphism) */
+.navbar-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--header-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Container pembatas lebar konten navbar agar rapi di layar lebar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 14px 28px;
+}
+
+
+/* ==========================================================================
+   2. LOGO & BRANDING
+   ========================================================================== */
+
+/* Link wadah logo (ikon + teks merk) */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;                          /* Jarak proporsional antara ikon dan teks */
+  text-decoration: none;              /* Menghilangkan garis bawah link bawaan */
+  transition: transform 0.25s ease;
+}
+
+.logo-container:hover {
+  transform: translateY(-1px);        /* Efek terangkat halus saat disorot */
+}
+
+/* Kotak bingkai ikon bintang logo */
+.logo-brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(198, 162, 76, 0.25), rgba(198, 162, 76, 0.05));
+  border: 1px solid rgba(198, 162, 76, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(198, 162, 76, 0.15);
+  flex-shrink: 0;
+}
+
+/* Ikon bintang (✦) dengan animasi denyut */
+.logo-icon {
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: bold;
+  animation: goldPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes goldPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(198, 162, 76, 0.6));
+  }
+}
+
+/* Wadah teks logo (Nama merk di atas, tagline di bawah) */
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+/* Teks nama merk utama ("Selaras") */
+.logo-text .wordmark {
+  font-family: var(--font-fraunces, serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  transition: color 0.25s ease;
+}
+
+/* Tagline di bawah nama merk ("RENTAL MOBIL PREMIUM") */
+.logo-text .tagline-logo {
+  font-family: var(--font-inter, sans-serif);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   3. MENU NAVIGASI UTAMA
+   ========================================================================== */
+
+/* Daftar link menu navigasi di bagian tengah */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;                          /* Jarak lega antar menu navigasi */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tampilan link menu individual */
+.navbar-menu a {
+  position: relative;
+  font-family: var(--font-inter, sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.25s ease;
+}
+
+/* Efek garis bawah animasi (awalnya width: 0%) */
+.navbar-menu a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), #f3e5ab);
+  border-radius: 2px;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Warna link saat disorot (hover) atau halaman sedang aktif */
+.navbar-menu a:hover,
+.navbar-menu a.active {
+  color: var(--text);
+}
+
+/* Garis bawah memanjang penuh saat link aktif atau di-hover */
+.navbar-menu a:hover::after,
+.navbar-menu a.active::after {
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   4. OTENTIKASI & PROFIL PENGGUNA (SISI KANAN NAVBAR)
+   ========================================================================== */
+
+/* Wadah grup tombol di sisi kanan navbar */
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* --- KONDISI BELUM LOGIN (GUEST) --- */
+
+/* Tombol / Link 'Masuk' */
+.nav-auth-link {
+  font-family: var(--font-inter, sans-serif);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-auth-link:hover,
+.nav-auth-link.active {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Tombol 'Daftar' emas (Call-to-Action) */
+.nav-btn-gold {
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-inter, sans-serif);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--btn-text);
+  background: linear-gradient(135deg, #c6a24c 0%, #e0be6c 100%);
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(198, 162, 76, 0.25);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.nav-btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(198, 162, 76, 0.4);
+}
+
+/* --- KONDISI SUDAH LOGIN (USER / ADMIN) --- */
+
+/* Pembungkus seluruh elemen akun pengguna yang sudah login */
+.navbar-user-logged {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Tombol pintasan '📋 Pesanan Saya' */
+.nav-orders-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--font-inter, sans-serif);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.nav-orders-shortcut:hover,
+.nav-orders-shortcut.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(198, 162, 76, 0.1);
+  box-shadow: 0 2px 8px rgba(198, 162, 76, 0.15);
+}
+
+/* Teks sapaan 'Halo, [Nama]' */
+.navbar-user-greeting {
+  font-size: 13.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.navbar-user-greeting strong {
+  color: var(--gold);
+}
+
+/* Tombol 'Keluar' (Logout) merah lembut */
+.nav-logout-btn {
+  background: rgba(201, 117, 117, 0.15);
+  border: 1px solid rgba(201, 117, 117, 0.4);
+  color: #ff8e8e;
+  font-family: var(--font-inter, sans-serif);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.nav-logout-btn:hover {
+  background: rgba(201, 117, 117, 0.3);
+  border-color: #ff8e8e;
+  transform: translateY(-1px);
+}
+
+/* Avatar inisial lingkaran pengguna */
+.avatar-account {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(198, 162, 76, 0.2), rgba(198, 162, 76, 0.05));
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-fraunces, serif);
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.avatar-account:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(198, 162, 76, 0.4);
+}
+
+
+/* ==========================================================================
+   5. TOMBOL PENGALIH TEMA (DARK / LIGHT MODE)
+   ========================================================================== */
+
+/* Tombol switch Tema berupa pil kapsul */
+.theme-toggle-btn {
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--font-inter, sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: all 0.25s ease;
+  user-select: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--gold);
+  background: var(--gold-soft);
+  color: var(--gold);
+  transform: translateY(-1px);
+}
+
+/* Ikon matahari/bulan di tombol tema */
+.theme-toggle-icon {
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle-btn:hover .theme-toggle-icon {
+  transform: rotate(20deg) scale(1.15);
+}
+
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (PENYESUAIAN LAYAR)
+   ========================================================================== */
+
+/* Layar Laptop Menengah (Lebar <= 1080px) */
+@media (max-width: 1080px) {
+  .navbar {
+    padding: 12px 20px;
+  }
+
+  .navbar-menu {
+    gap: 18px;                          /* Merapatkan jarak menu agar tidak bertabrakan */
+  }
+
+  .navbar-menu a {
+    font-size: 13.5px;
+  }
+}
+
+/* Layar Tablet & Smartphone (Lebar <= 860px) */
+@media (max-width: 860px) {
+  .navbar-menu {
+    display: none;                      /* Sembunyikan menu teks panjang di layar sempit */
+  }
+
+  .navbar-user-greeting {
+    display: none;                      /* Sembunyikan teks 'Halo, Nama' di tablet agar rapi */
+  }
+}
+
+/* Layar Smartphone Sedang (Lebar <= 640px) */
+@media (max-width: 640px) {
+  .navbar {
+    padding: 10px 16px;
+  }
+
+  /* Sisakan hanya ikon pada tombol tema (sembunyikan teks 'Mode Terang/Gelap') */
+  .theme-toggle-text {
+    display: none;
+  }
+
+  .theme-toggle-btn {
+    padding: 7px 10px;
+  }
+
+  .navbar-auth {
+    gap: 10px;
+  }
+
+  .nav-orders-shortcut {
+    padding: 6px 9px;
+    font-size: 11.5px;
+  }
+
+  .nav-btn-gold,
+  .nav-auth-link {
+    padding: 7px 12px;
+    font-size: 12.5px;
+  }
+}
+
+/* Layar Smartphone Kecil (Lebar <= 420px) */
+@media (max-width: 420px) {
+  .logo-text .tagline-logo {
+    display: none;                      /* Sembunyikan tagline di layar sangat kecil */
+  }
+
+  .logo-text .wordmark {
+    font-size: 18px;
+  }
+
+  .logo-brand-mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo-icon {
+    font-size: 15px;
+  }
+
+  .logo-container {
+    gap: 8px;
+  }
+
+  /* Sederhanakan teks tombol shortcut pesanan di mobile kecil */
+  .nav-orders-shortcut {
+    font-size: 0;                       /* Sembunyikan tulisan teks, sisakan ikon */
+    padding: 6px 8px;
+  }
+
+  .nav-orders-shortcut::before {
+    content: "📋";
+    font-size: 13px;
+  }
+}

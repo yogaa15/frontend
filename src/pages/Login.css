@@ -1,0 +1,694 @@
+/* ==========================================================================
+   DAFTAR ISI LOGIN.CSS (TABLE OF CONTENTS)
+   ==========================================================================
+   1. STRUKTUR UTAMA & EFEK CAHAYA (Wrapper & Ambient Glow Blobs)
+   2. KARTU LOGIN UTAMA (Glassmorphism Card & Animasi Masuk)
+   3. HEADER & BADGE KARTU (Badge Luxury, Judul, & Subjudul)
+   4. FORM & INPUT FIELD (Label, Input Text, Ikon, & Toggle Password)
+   5. OPSI TAMBAHAN (Ingat Saya / Custom Checkbox & Lupa Kata Sandi)
+   6. TOMBOL MASUK DENGAN SHIMMER (Submit Button, Kilauan Emas, & Spinner Loading)
+   7. PEMBATAS & TOMBOL LOGIN SOSIAL (Google & Apple Login)
+   8. TOMBOL SEKUNDER / AKUN PINTAS (Secondary Button)
+   9. NAVIGASI DAFTAR & TRUST BADGE (Pindah ke Register & Keamanan)
+   10. NOTIFIKASI TOAST (Pemberitahuan Melayang di Pojok Layar)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. STRUKTUR UTAMA & EFEK CAHAYA (AMBIENT GLOW)
+   ========================================================================== */
+
+/* Pembungkus halaman login: posisi relatif, memusatkan kartu tepat di tengah layar */
+.lmj-auth-wrapper {
+  position: relative;
+  min-height: calc(100vh - 120px);
+  /* Tinggi minimal menyesuaikan sisa tinggi layar */
+  display: flex;
+  align-items: center;
+  /* Rata tengah secara vertikal */
+  justify-content: center;
+  /* Rata tengah secara horizontal */
+  padding: 40px 20px;
+  /* Jarak aman di sekeliling area */
+  overflow: hidden;
+  /* Mencegah scrollbar muncul akibat efek cahaya di luar layar */
+}
+
+/* Lingkaran cahaya ambient emas 1 (kiri atas kartu) */
+.lmj-auth-glow-1 {
+  position: absolute;
+  top: 15%;
+  /* Posisi 15% dari atas */
+  left: 20%;
+  /* Posisi 20% dari kiri */
+  width: 450px;
+  /* Lebar lingkaran cahaya */
+  height: 450px;
+  /* Tinggi lingkaran cahaya */
+  background: radial-gradient(circle, rgba(198, 162, 76, 0.12) 0%, rgba(13, 14, 18, 0) 70%);
+  /* Gradasi cahaya emas memudar */
+  filter: blur(50px);
+  /* Efek blur kabur agar cahaya tampak lembut menyatu */
+  pointer-events: none;
+  /* Agar tidak menghalangi klik kursor mouse */
+  animation: glowFloat 10s ease-in-out infinite alternate;
+  /* Animasi cahaya bergerak mengapung perlahan */
+}
+
+/* Lingkaran cahaya ambient emas 2 (kanan bawah kartu) */
+.lmj-auth-glow-2 {
+  position: absolute;
+  bottom: 10%;
+  /* Posisi 10% dari bawah */
+  right: 18%;
+  /* Posisi 18% dari kanan */
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(198, 162, 76, 0.08) 0%, rgba(13, 14, 18, 0) 70%);
+  /* Cahaya memudar */
+  filter: blur(60px);
+  pointer-events: none;
+  animation: glowFloat 14s ease-in-out infinite alternate-reverse;
+  /* Gerakan berlawanan arah dengan ritme berbeda */
+}
+
+/* Animasi mengapung dinamis untuk lingkaran cahaya ambient */
+@keyframes glowFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+    /* Posisi awal normal */
+  }
+
+  50% {
+    transform: translate(30px, -20px) scale(1.08);
+    /* Bergerak sedikit serong dan membesar */
+  }
+
+  100% {
+    transform: translate(-20px, 30px) scale(0.95);
+    /* Bergerak ke arah lain dan sedikit mengecil */
+  }
+}
+
+
+/* ==========================================================================
+   2. KARTU LOGIN UTAMA (GLASSMORPHISM & ANIMASI ENTER)
+   ========================================================================== */
+
+/* Kotak kartu login dengan konsep kaca mewah (Glassmorphism) */
+.lmj-auth-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  /* Batas lebar kartu agar tetap proporsional */
+  background: var(--card-glass);
+  /* Latar belakang semi-transparan dari variabel CSS */
+  backdrop-filter: blur(20px);
+  /* Efek buram frosted glass di belakang kartu */
+  -webkit-backdrop-filter: blur(20px);
+  /* Kompatibilitas browser Safari / iOS */
+  border: 1px solid var(--card-glass-border);
+  /* Garis batas tipis beraksen emas */
+  border-radius: 20px;
+  /* Sudut kartu melengkung halus */
+  padding: 40px 36px;
+  /* Jarak konten ke tepi dalam kartu */
+  box-shadow:
+    0 24px 60px var(--shadow-color),
+    /* Bayangan jatuh ke bawah untuk efek kedalaman 3D */
+    0 0 40px rgba(198, 162, 76, 0.08);
+  /* Efek pendaran keemasan halus di sekeliling kartu */
+  animation: authCardEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* Animasi kartu meluncur masuk */
+  z-index: 10;
+  /* Memastikan kartu tampil di depan elemen cahaya ambient */
+}
+
+/* Animasi kemunculan kartu dari bawah dengan efek membal halus */
+@keyframes authCardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+    /* Transparan, bergeser 30px ke bawah dan agak kecil */
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    /* Muncul utuh di posisi normal */
+  }
+}
+
+
+/* ==========================================================================
+   3. HEADER & BADGE KARTU
+   ========================================================================== */
+
+/* Bagian pembungkus judul & deskripsi kartu */
+.lmj-auth-header {
+  text-align: center;
+  /* Teks rata tengah */
+  margin-bottom: 28px;
+  /* Jarak ke elemen di bawahnya */
+}
+
+/* Lencana / badge penanda akses eksklusif */
+.lmj-auth-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  /* Jarak antara ikon dan tulisan badge */
+  font-family: var(--font-inter);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  /* Jarak renggang antar huruf untuk kesan elegan */
+  text-transform: uppercase;
+  /* Huruf kapital semua */
+  color: var(--gold);
+  /* Warna teks emas */
+  background: rgba(198, 162, 76, 0.12);
+  /* Latar belakang emas transparan */
+  border: 1px solid rgba(198, 162, 76, 0.3);
+  /* Garis tepi emas lembut */
+  padding: 6px 14px;
+  border-radius: 30px;
+  /* Bentuk pil membulat */
+  margin-bottom: 14px;
+}
+
+/* Judul halaman */
+.lmj-auth-title {
+  font-family: var(--font-fraunces);
+  /* Tipografi serif elegan */
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text);
+  /* Warna teks utama */
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+  /* Sedikit merapatkan huruf */
+}
+
+/* Subjudul / deskripsi singkat di bawah judul */
+.lmj-auth-subtitle {
+  font-family: var(--font-inter);
+  font-size: 14px;
+  color: var(--muted);
+  /* Warna teks abu-abu lembut */
+  line-height: 1.5;
+  /* Kerapatan tinggi baris agar nyaman dibaca */
+}
+
+
+/* ==========================================================================
+   4. FORM & INPUT FIELD
+   ========================================================================== */
+
+/* Struktur pembungkus seluruh input form */
+.lmj-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  /* Jarak antar kolom input */
+}
+
+/* Tiap baris input (Label + Input Wrapper) */
+.lmj-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  /* Jarak label ke kolom input */
+}
+
+/* Teks label input (Email / Kata Sandi) */
+.lmj-field-label {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  /* Menyebar teks label dan info tambahan ke ujung */
+  align-items: center;
+}
+
+/* Wadah pembungkus input dan ikon pelengkap di dalamnya */
+.lmj-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* Menyejajarkan ikon dan input vertikal di tengah */
+}
+
+/* Ikon di dalam input (sebelah kiri) */
+.lmj-input-icon {
+  position: absolute;
+  left: 14px;
+  /* Posisi menempel 14px dari sisi kiri */
+  color: var(--muted);
+  /* Warna default abu-abu */
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  /* Klik tembus langsung ke kolom input */
+  transition: color 0.2s ease;
+}
+
+/* Kolom input teks (Email & Password) */
+.lmj-input {
+  width: 100%;
+  background: var(--surface2);
+  /* Warna latar kolom input */
+  border: 1px solid var(--line);
+  /* Garis pembatas netral */
+  color: var(--text);
+  /* Warna teks yang diketik pengguna */
+  padding: 13px 42px;
+  /* Ruang dalam agar teks tidak menabrak ikon */
+  border-radius: 10px;
+  /* Sudut membulat modern */
+  font-family: var(--font-inter);
+  font-size: 14px;
+  outline: none;
+  /* Hilangkan outline default browser */
+  transition: all 0.25s ease;
+}
+
+/* Warna teks placeholder sebelum kolom diisi */
+.lmj-input::placeholder {
+  color: #5d6170;
+}
+
+/* Status kolom input saat aktif diklik (fokus) */
+.lmj-input:focus {
+  border-color: var(--gold);
+  /* Border berubah menjadi aksen emas */
+  background: #1e222c;
+  box-shadow: 0 0 0 3px rgba(198, 162, 76, 0.15);
+  /* Pendaran cincin emas (focus ring) */
+}
+
+/* Ikon berubah menjadi emas ketika kolom input sedang aktif difokuskan */
+.lmj-input:focus + .lmj-input-icon,
+.lmj-input-wrapper:focus-within .lmj-input-icon {
+  color: var(--gold);
+}
+
+/* Tombol buka/tutup sensor mata kata sandi (di sebelah kanan) */
+.lmj-toggle-eye {
+  position: absolute;
+  right: 12px;
+  /* Posisi di tepi kanan input */
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+/* Sorotan tombol mata saat di-hover */
+.lmj-toggle-eye:hover {
+  color: var(--text);
+  /* Warna ikon menjadi lebih terang */
+}
+
+
+/* ==========================================================================
+   5. OPSI TAMBAHAN (INGAT SAYA & LUPA KATA SANDI)
+   ========================================================================== */
+
+/* Baris pengaturan: Checkbox di kiri dan Link Lupa Sandi di kanan */
+.lmj-auth-options {
+  display: flex;
+  justify-content: space-between;
+  /* Memisahkan opsi kiri dan kanan */
+  align-items: center;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+/* Label opsi "Ingat saya" */
+.lmj-remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Jarak antara kotak centang dan teks */
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+  /* Mencegah teks terblok tidak sengaja saat diklik */
+}
+
+/* Custom checkbox modern pengganti kotak default browser */
+.lmj-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  /* Menghapus gaya kotak centang standar browser */
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface2);
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  /* Menempatkan tanda centang tepat di tengah */
+  transition: all 0.2s ease;
+}
+
+/* Tampilan checkbox ketika tercentang (checked) */
+.lmj-checkbox:checked {
+  background: var(--gold);
+  /* Latar belakang menjadi emas */
+  border-color: var(--gold);
+  /* Border menjadi emas */
+}
+
+/* Karakter tanda centang (✓) di dalam checkbox */
+.lmj-checkbox:checked::before {
+  content: "✓";
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--btn-text);
+  /* Warna tanda centang kontras */
+}
+
+/* Tautan link "Lupa kata sandi?" */
+.lmj-forgot-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+/* Efek saat tautan disorot kursor */
+.lmj-forgot-link:hover {
+  opacity: 0.85;
+  text-decoration: underline;
+  /* Muncul garis bawah saat hover */
+}
+
+
+/* ==========================================================================
+   6. TOMBOL MASUK DENGAN EFEK SHIMMER (SUBMIT BUTTON)
+   ========================================================================== */
+
+/* Tombol utama form login dengan gradasi emas mewah */
+.lmj-submit-btn {
+  position: relative;
+  width: 100%;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #d4b35f 0%, #c6a24c 50%, #b28b32 100%);
+  /* Gradasi emas premium */
+  color: var(--btn-text);
+  font-family: var(--font-inter);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  overflow: hidden;
+  /* Mengunci kilauan shimmer agar tidak tumpah keluar tombol */
+  box-shadow: 0 6px 20px rgba(198, 162, 76, 0.35);
+  /* Bayangan emas di bawah tombol */
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* Jarak teks tombol dengan ikon panah/spinner */
+  margin-top: 6px;
+}
+
+/* Lapisan efek kilau cahaya berkilap (shimmer effect) */
+.lmj-submit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 100%);
+  /* Gradasi berkas sinar putih transparan */
+  animation: btnShimmer 3.5s infinite;
+  /* Efek kilau melintas secara berulang */
+}
+
+/* Animasi sapuan kilau melintasi tombol */
+@keyframes btnShimmer {
+  0% {
+    left: -100%;
+    /* Cahaya berada di luar tombol sebelah kiri */
+  }
+
+  30%,
+  100% {
+    left: 150%;
+    /* Cahaya melesat ke sebelah kanan tombol */
+  }
+}
+
+/* Efek saat tombol submit di-hover */
+.lmj-submit-btn:hover {
+  transform: translateY(-2px);
+  /* Tombol terangkat 2px */
+  box-shadow: 0 10px 28px rgba(198, 162, 76, 0.5);
+  /* Bayangan emas menjadi lebih kuat */
+}
+
+/* Efek saat tombol submit diklik/ditekan (active) */
+.lmj-submit-btn:active {
+  transform: translateY(0);
+  /* Kembali ke posisi awal */
+}
+
+/* Status tombol ketika sedang proses loading (disabled) */
+.lmj-submit-btn:disabled {
+  opacity: 0.7;
+  /* Sedikit memudar */
+  cursor: not-allowed;
+  /* Kursor berubah tanda dilarang */
+  transform: none;
+}
+
+/* Lingkaran pemutar indikator loading (spinner) */
+.lmj-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--btn-text);
+  border-top-color: transparent;
+  /* Sisi atas transparan agar terbentuk putaran */
+  border-radius: 50%;
+  /* Membentuk lingkaran sempurna */
+  animation: spin 0.7s linear infinite;
+  /* Berputar terus menerus */
+}
+
+/* Animasi rotasi putaran loading 360 derajat */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ==========================================================================
+   7. PEMBATAS & TOMBOL LOGIN SOSIAL
+   ========================================================================== */
+
+/* Garis pembatas horizontal bertuliskan "atau lanjutkan dengan" */
+.lmj-auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+/* Garis tipis di kiri dan kanan teks divider */
+.lmj-auth-divider::before,
+.lmj-auth-divider::after {
+  content: "";
+  flex: 1;
+  /* Garis memanjang mengisi ruang kosong secara rata */
+  height: 1px;
+  background: var(--line);
+  /* Warna garis pembatas netral */
+}
+
+/* Tata letak grid untuk 2 tombol sosial media (Google & Apple) */
+.lmj-social-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* 2 kolom seimbang */
+  gap: 12px;
+}
+
+/* Tombol login sosial media */
+.lmj-social-btn {
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+}
+
+/* Efek saat tombol sosial media di-hover */
+.lmj-social-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(198, 162, 76, 0.4);
+  /* Border berubah keemasan */
+  transform: translateY(-1px);
+}
+
+
+/* ==========================================================================
+   8. TOMBOL SEKUNDER / AKUN PINTAS (SECONDARY BUTTON)
+   ========================================================================== */
+
+/* Tombol pintas sekunder (juga digunakan di modul Pembayaran & Riwayat Pesanan) */
+.lmj-demo-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  /* Garis batas tipis */
+  color: var(--text);
+  font-family: var(--font-inter);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  /* Transisi animasi halus */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Efek saat tombol sekunder disorot kursor (hover) */
+.lmj-demo-btn:hover {
+  background: rgba(198, 162, 76, 0.15);
+  /* Latar emas transparan saat hover */
+  border-color: var(--gold);
+  /* Border berubah ke warna emas */
+  color: var(--gold);
+  /* Teks berubah warna emas */
+  transform: translateY(-1px);
+  /* Sedikit terangkat 1px ke atas */
+}
+
+
+/* ==========================================================================
+   9. NAVIGASI DAFTAR & TRUST BADGE KEAMANAN
+   ========================================================================== */
+
+/* Area ajakan mendaftar bagi yang belum memiliki akun */
+.lmj-auth-switch {
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-top: 24px;
+}
+
+/* Tautan teks "Daftar sekarang" */
+.lmj-auth-switch a {
+  color: var(--gold);
+  font-weight: 600;
+  margin-left: 4px;
+  transition: all 0.2s ease;
+}
+
+/* Efek garis bawah saat link daftar disorot kursor */
+.lmj-auth-switch a:hover {
+  text-decoration: underline;
+}
+
+/* Indikator kepercayaan & keamanan (Enkripsi 256-bit & Privasi Terjaga) */
+.lmj-auth-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  /* Jarak antar item keamanan */
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  /* Garis pemisah tipis di atas */
+  color: #6d7280;
+  font-size: 11.5px;
+}
+
+/* Tiap butir item kepercayaan (ikon centang/gembok + teks) */
+.lmj-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+/* ==========================================================================
+   10. NOTIFIKASI TOAST (PEMBERITAHUAN MELAYANG)
+   ========================================================================== */
+
+/* Kotak notifikasi melayang yang muncul di pojok kanan bawah */
+.lmj-toast {
+  position: fixed;
+  bottom: 24px;
+  /* Menempel 24px dari bawah layar */
+  right: 24px;
+  /* Menempel 24px dari sisi kanan layar */
+  background: rgba(21, 23, 29, 0.95);
+  /* Warna gelap solid bergradasi kaca */
+  border: 1px solid var(--gold);
+  /* Garis batas emas */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  /* Bayangan tegas */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  /* Efek blur latar belakang toast */
+  padding: 14px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  font-size: 13.5px;
+  z-index: 1000;
+  /* Selalu berada di lapisan paling depan */
+  animation: toastSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* Animasi meluncur dari bawah */
+}
+
+/* Animasi toast meluncur naik dari bawah ke posisinya */
+@keyframes toastSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    /* Mulai dari posisi 20px di bawah */
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    /* Bergerak ke posisi normal */
+  }
+}

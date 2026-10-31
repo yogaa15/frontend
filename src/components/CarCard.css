@@ -1,0 +1,41 @@
+/* ==========================================================================
+   CARCARD.CSS — KARTU DISPLAY MOBIL
+   ========================================================================== */
+
+/* Kartu pembungkus mobil */
+.car-card {
+  background-color: var(--surface);
+  /* Warna latar belakang kartu */
+  border: 1px solid var(--line);
+  /* Garis batas tipis sekeliling kartu */
+  border-radius: 12px;
+  /* Sudut melengkung kartu */
+  padding: 16px;
+  /* Jarak isi ke tepi kartu */
+  display: flex;
+  flex-direction: column;
+  /* Menyusun isi kartu ke bawah */
+  gap: 12px;
+  /* Jarak antar elemen di dalam kartu */
+}
+
+/* Gambar foto mobil */
+.car-img {
+  width: 100%;
+  /* Lebar gambar memenuhi kartu */
+  height: 160px;
+  /* Tinggi foto mobil */
+  object-fit: cover;
+  /* Memastikan gambar proporsional tanpa gepeng */
+  border-radius: 8px;
+  /* Sudut membulat pada foto */
+}
+
+/* Baris info singkat mobil (nama & harga) */
+.car-info {
+  display: flex;
+  justify-content: space-between;
+  /* Nama mobil di kiri, harga di kanan */
+  align-items: center;
+  /* Rata tengah secara vertikal */
+}

@@ -1,0 +1,20 @@
+{
+  "name": "rental-mobil-backend",
+  "version": "1.0.0",
+  "description": "Unified Backend API for Rental Mobil",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "init-db": "node src/db/init.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "google-auth-library": "^11.3.1",
+    "pg": "^8.23.0"
+  }
+}

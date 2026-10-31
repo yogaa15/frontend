@@ -1,0 +1,254 @@
+/* ==========================================================================
+   DAFTAR ISI REGISTER.CSS (TABLE OF CONTENTS)
+   ==========================================================================
+   1. STRUKTUR UTAMA (Wrapper Halaman & Kartu Registrasi Tunggal)
+   2. HEADER & JUDUL FORMULIR (Judul Serif & Subjudul)
+   3. INDIKATOR PROGRES PENGISIAN (Step Progress Bar Dinamis)
+   4. FORM & LAYOUT GRID (Form Input & Grid Responsif 2 Kolom)
+   5. INDIKATOR KEKUATAN SANDI (Password Strength Meter & Bar Warna)
+   6. PERSETUJUAN SYARAT & KETENTUAN (Checkbox Terms & Conditions)
+   7. EFEK CAHAYA AMBIENT (Glow Background)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. STRUKTUR UTAMA (WRAPPER & KARTU UTAMA)
+   ========================================================================== */
+
+/* Pembungkus halaman pendaftaran (posisi di tengah layar secara vertikal & horizontal) */
+.lmj-reg-wrapper {
+  position: relative;
+  min-height: calc(100vh - 90px);     /* Menyesuaikan sisa tinggi layar setelah navbar */
+  width: 100%;
+  display: flex !important;
+  align-items: center !important;     /* Rata tengah vertikal */
+  justify-content: center !important; /* Rata tengah horizontal */
+  padding: 40px 20px;                 /* Jarak aman tepi */
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Kontainer kartu registrasi tunggal dengan efek kaca (Glassmorphism) */
+.lmj-reg-container {
+  display: block;                     /* Tata letak kartu tunggal */
+  max-width: 580px;                   /* Lebar maksimal ideal formulir */
+  width: 100%;
+  margin: 0 auto !important;          /* Posisi tengah otomatis */
+  background: var(--card-glass, var(--surface)); /* Latar belakang kaca tembus pandang */
+  backdrop-filter: blur(24px);        /* Efek blur kaca di belakang kartu */
+  -webkit-backdrop-filter: blur(24px);/* Dukungan browser Safari */
+  border: 1px solid var(--card-glass-border, var(--line)); /* Garis batas tipis mewah */
+  border-radius: 24px;                /* Sudut kartu melengkung modern */
+  box-shadow: 
+    0 24px 70px var(--shadow-color, rgba(0, 0, 0, 0.4)),  /* Bayangan ke bawah */
+    0 0 50px rgba(198, 162, 76, 0.08); /* Efek pendaran emas lembut di sekitar kartu */
+  overflow: hidden;
+  animation: regCardEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; /* Animasi kemunculan kartu */
+  z-index: 10;
+  position: relative;
+}
+
+/* Animasi kemunculan kartu meluncur dari bawah */
+@keyframes regCardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98); /* Mulai dari bawah dan agak kecil */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);       /* Muncul utuh di posisi normal */
+  }
+}
+
+
+/* ==========================================================================
+   2. HEADER & JUDUL FORMULIR
+   ========================================================================== */
+
+/* Wadah isi formulir dengan jarak ruang dalam */
+.lmj-reg-form-wrap {
+  padding: 40px 36px;                 /* Jarak isi ke tepi kartu */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Bagian kepala formulir */
+.lmj-reg-form-head {
+  text-align: center;                 /* Teks judul rata tengah */
+  margin-bottom: 22px;
+}
+
+/* Judul formulir registrasi ("Buat Akun Baru") */
+.lmj-reg-title {
+  font-family: var(--font-fraunces, serif); /* Font serif mewah */
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text);                 /* Warna teks utama */
+  margin-bottom: 6px;
+}
+
+/* Subjudul keterangan pendaftaran */
+.lmj-reg-subtitle {
+  font-family: var(--font-inter, sans-serif);
+  font-size: 13.5px;
+  color: var(--muted);                /* Warna teks abu-abu lembut */
+}
+
+
+/* ==========================================================================
+   3. INDIKATOR PROGRES PENGISIAN
+   ========================================================================== */
+
+/* Wadah bilah progres pengisian formulir */
+.lmj-reg-progress-wrap {
+  margin-bottom: 22px;
+}
+
+/* Label teks persentase progres ("Kelengkapan data: 50%") */
+.lmj-progress-label {
+  display: flex;
+  justify-content: space-between;     /* Teks keterangan di kiri, angka % di kanan */
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+/* Jalur rel abu-abu untuk bilah progres */
+.lmj-progress-track {
+  width: 100%;
+  height: 5px;
+  background: var(--surface2);        /* Warna latar rel */
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Garis warna emas yang mengisi rel secara dinamis */
+.lmj-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #c6a24c, #f3e5ab); /* Gradasi emas menyala */
+  border-radius: 4px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);  /* Animasi mulus saat % bertambah */
+}
+
+
+/* ==========================================================================
+   4. FORM & LAYOUT GRID
+   ========================================================================== */
+
+/* Tata letak form pendaftaran */
+.lmj-reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;                          /* Jarak antar kolom input */
+}
+
+/* Grid membagi 2 kolom sejajar untuk input (misal: Nama Depan & Belakang) */
+.lmj-reg-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;     /* 2 kolom seimbang (50% - 50%) */
+  gap: 14px;
+}
+
+/* Penyesuaian saat dibuka di layar HP (lebar <= 580px) */
+@media (max-width: 580px) {
+  .lmj-reg-grid {
+    grid-template-columns: 1fr;       /* Menjadi 1 kolom bertumpuk ke bawah */
+  }
+  .lmj-reg-form-wrap {
+    padding: 28px 20px;               /* Mempersempit padding agar muat di layar HP */
+  }
+}
+
+
+/* ==========================================================================
+   5. INDIKATOR KEKUATAN SANDI (PASSWORD STRENGTH METER)
+   ========================================================================== */
+
+/* Wadah pengukur kekuatan kata sandi */
+.lmj-pwd-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* Baris penampung segmen-segmen bar indikator */
+.lmj-pwd-bars {
+  display: flex;
+  gap: 5px;                           /* Jarak antar bar */
+  height: 4px;                        /* Ketebalan garis bar */
+}
+
+/* Tiap baris segmen indikator kekuatan */
+.lmj-pwd-segment {
+  flex: 1;                            /* Setiap bar memiliki lebar yang sama rata */
+  background: var(--surface2);        /* Warna abu-abu saat belum terpenuhi */
+  border-radius: 2px;
+  transition: background 0.3s ease;   /* Perubahan warna yang halus */
+}
+
+/* Status sandi lemah (warna merah) */
+.lmj-pwd-segment.active-weak {
+  background: #e55353;
+}
+
+/* Status sandi sedang (warna jingga/oranye) */
+.lmj-pwd-segment.active-medium {
+  background: #f1a94e;
+}
+
+/* Status sandi kuat (warna hijau) */
+.lmj-pwd-segment.active-strong {
+  background: #2eb85c;
+}
+
+/* Keterangan teks kekuatan sandi ("Lemah", "Sedang", "Kuat") */
+.lmj-pwd-text {
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+}
+
+
+/* ==========================================================================
+   6. PERSETUJUAN SYARAT & KETENTUAN (TERMS CHECKBOX)
+   ========================================================================== */
+
+/* Kotak opsi persetujuan Syarat & Ketentuan */
+.lmj-terms-check {
+  display: flex;
+  align-items: flex-start;            /* Menyelaraskan kotak centang dengan baris pertama teks */
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.4;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+/* Tautan teks link Syarat & Ketentuan */
+.lmj-terms-check a {
+  color: var(--gold);                 /* Warna emas */
+  text-decoration: underline;         /* Bergaris bawah */
+}
+
+
+/* ==========================================================================
+   7. EFEK CAHAYA AMBIENT (BACKGROUND GLOW)
+   ========================================================================== */
+
+/* Pendaran cahaya emas lembut di belakang tengah kartu */
+.lmj-auth-glow-1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);   /* Posisikan persis di tengah layar */
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(198, 162, 76, 0.12) 0%, transparent 70%); /* Pendaran cahaya memudar */
+  pointer-events: none;               /* Bebas klik mouse */
+  z-index: 1;                         /* Berada di bawah kartu */
+}

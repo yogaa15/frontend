@@ -1,0 +1,1846 @@
+/* =============================================
+   SewaMobil.css — Gaya LMJ Rent Car
+   Scroll reveal, hover lift, image zoom,
+   floating WA, hero banner, shimmer buttons
+   ============================================= */
+
+/* ─── SCROLL REVEAL ANIMATION ─────────────── */
+/* Elemen selalu terlihat (opacity: 1) dan mendapat animasi fade-up halus */
+.lmj-hero,
+.lmj-section,
+.lmj-keunggulan__item,
+.lmj-booking__form,
+.lmj-summary {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.lmj-hero.reveal,
+.lmj-section.reveal,
+.lmj-keunggulan__item.reveal,
+.lmj-booking__form.reveal,
+.lmj-summary.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── PAGE ────────────────────────────────── */
+.lmj-page {
+  /* Full-width page, keluar dari main-content padding */
+  margin: -32px -24px;
+  overflow-x: hidden;
+}
+
+/* ─── HERO BANNER ─────────────────────────── */
+.lmj-hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.lmj-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.lmj-hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+.lmj-hero__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay);
+}
+
+.lmj-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  padding: 60px 48px;
+}
+
+.lmj-hero__tag {
+  display: inline-block;
+  font-family: var(--font-inter);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(198, 162, 76, 0.12);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  animation: fadeSlideDown 0.8s ease 0.3s both;
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lmj-hero__title {
+  font-family: var(--font-fraunces);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 16px;
+  animation: fadeSlideUp 0.8s ease 0.5s both;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lmj-hero__desc {
+  font-size: 15.5px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 28px;
+  max-width: 480px;
+  animation: fadeSlideUp 0.8s ease 0.7s both;
+}
+
+.lmj-hero__btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  animation: fadeSlideUp 0.8s ease 0.9s both;
+}
+
+/* Floating car di hero (melayang pelan) */
+.lmj-hero__float-car {
+  position: absolute;
+  right: -40px;
+  bottom: 30px;
+  width: 460px;
+  z-index: 1;
+  opacity: 0.25;
+  animation: floatCar 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.lmj-hero__float-car img {
+  width: 100%;
+  border-radius: 20px;
+  filter: brightness(0.5);
+}
+
+@keyframes floatCar {
+  from { transform: translateY(0) rotate(-1deg); }
+  to   { transform: translateY(-18px) rotate(1deg); }
+}
+
+@media (max-width: 768px) {
+  .lmj-hero__float-car { display: none; }
+  .lmj-hero__content { padding: 40px 24px; }
+}
+
+/* ─── BUTTONS (Gaya LMJ) ─────────────────── */
+.lmj-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 26px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer effect on gold button (seperti LMJ CTA) */
+.lmj-btn--gold {
+  background: linear-gradient(135deg, var(--gold) 0%, #d4a942 100%);
+  color: var(--btn-text);
+  box-shadow: 0 4px 16px rgba(198, 162, 76, 0.3);
+}
+
+.lmj-btn--gold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: left 0.5s ease;
+}
+
+.lmj-btn--gold:hover::after {
+  left: 100%;
+}
+
+.lmj-btn--gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(198, 162, 76, 0.45);
+}
+
+.lmj-btn--gold:active {
+  transform: translateY(-1px);
+}
+
+.lmj-btn--outline {
+  background: transparent;
+  border: 1.5px solid var(--line);
+  color: var(--text);
+}
+
+.lmj-btn--outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+  background: var(--gold-soft);
+}
+
+.lmj-btn--full {
+  width: 100%;
+  justify-content: center;
+  padding: 14px 24px;
+  font-size: 15px;
+}
+
+/* ─── SECTION HEADERS ─────────────────────── */
+.lmj-section {
+  padding: 60px 48px;
+}
+
+.lmj-section__header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.lmj-section__tag {
+  display: inline-block;
+  font-family: var(--font-inter);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.lmj-section__title {
+  font-family: var(--font-fraunces);
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.lmj-section__desc {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .lmj-section { padding: 40px 20px; }
+}
+
+/* ─── KEUNGGULAN (numbered cards, seperti LMJ 01-05) ── */
+.lmj-keunggulan {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.lmj-keunggulan__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.lmj-keunggulan__item {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 28px 22px;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.lmj-keunggulan__item:hover {
+  border-color: var(--gold);
+  box-shadow: 0 8px 30px rgba(198, 162, 76, 0.12);
+  transform: translateY(-6px) !important;
+}
+
+.lmj-keunggulan__num {
+  font-family: var(--font-fraunces);
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+  margin-bottom: 14px;
+  opacity: 0.7;
+}
+
+.lmj-keunggulan__item:hover .lmj-keunggulan__num {
+  opacity: 1;
+}
+
+.lmj-keunggulan__item-title {
+  font-family: var(--font-fraunces);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.lmj-keunggulan__item-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ─── MOBIL GRID (kartu mobil 4 kolom) ────── */
+.lmj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 22px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─── KARTU MOBIL ─────────────────────────── */
+.lmj-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+
+  /* Card base display */
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.lmj-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HOVER: lift + shadow (seperti LMJ) */
+.lmj-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: rgba(198, 162, 76, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(198, 162, 76, 0.15);
+}
+
+/* ACTIVE / SELECTED */
+.lmj-card--active {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 2px var(--gold), 0 12px 32px rgba(198, 162, 76, 0.2) !important;
+}
+
+/* ─── Card Image Box ── */
+.lmj-card__img-box {
+  position: relative;
+  height: 175px;
+  overflow: hidden;
+}
+
+.lmj-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* HOVER: image zoom (seperti LMJ) */
+.lmj-card:hover .lmj-card__img {
+  transform: scale(1.08);
+}
+
+.lmj-card__img-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,14,18,0.5) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Badge "Dipilih" */
+.lmj-card__badge-selected {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  animation: badgePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 2;
+}
+
+@keyframes badgePop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ─── Card Content ── */
+.lmj-card__content {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lmj-card__nama {
+  font-family: var(--font-fraunces);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.lmj-card__spek {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.lmj-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.lmj-card__price-val {
+  font-family: var(--font-fraunces);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--gold);
+}
+
+.lmj-card__price-unit {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-left: 2px;
+}
+
+.lmj-card__btn {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: 1.5px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.lmj-card__btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(198, 162, 76, 0.08);
+}
+
+.lmj-card__btn--active {
+  background: var(--gold);
+  color: var(--btn-text);
+  border-color: var(--gold);
+}
+
+.lmj-card__btn--active:hover {
+  background: var(--gold-light);
+  color: var(--btn-text);
+}
+
+/* ─── BOOKING SECTION ─────────────────────── */
+.lmj-booking-section {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.lmj-booking {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .lmj-booking { grid-template-columns: 1fr; }
+}
+
+/* Form tanggal */
+.lmj-booking__form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 28px;
+}
+
+.lmj-booking__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lmj-booking__arrow {
+  text-align: center;
+  color: var(--gold);
+  font-size: 20px;
+  opacity: 0.5;
+}
+
+.lmj-label {
+  font-family: var(--font-inter);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.lmj-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-family: var(--font-inter);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.lmj-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(198, 162, 76, 0.12);
+}
+
+/* ─── SUMMARY PANEL ───────────────────────── */
+.lmj-summary {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.lmj-summary__preview {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+  background: var(--surface2);
+}
+
+.lmj-summary__preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: previewFade 0.45s ease;
+}
+
+@keyframes previewFade {
+  from { opacity: 0; transform: scale(1.06); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.lmj-summary__preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+}
+
+.lmj-summary__preview-name {
+  font-family: var(--font-fraunces);
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.lmj-summary__body {
+  padding: 22px;
+}
+
+.lmj-summary__title {
+  font-family: var(--font-fraunces);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+
+.lmj-summary__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.lmj-summary__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+}
+
+.lmj-summary__row span {
+  color: var(--muted);
+}
+
+.lmj-summary__row strong {
+  color: var(--text);
+  font-weight: 500;
+  text-align: right;
+  max-width: 55%;
+}
+
+.lmj-summary__row--total {
+  padding-top: 10px;
+}
+
+.lmj-summary__row--total span {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.lmj-summary__row--total strong {
+  font-family: var(--font-fraunces);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.lmj-summary__hr {
+  border: none;
+  border-top: 1px dashed var(--line);
+  margin: 4px 0;
+}
+
+/* ─── FLOATING WHATSAPP (seperti LMJ) ────── */
+.lmj-wa-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 56px;
+  height: 56px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  z-index: 999;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lmj-wa-float:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
+}
+
+/* Pulse ring animation (seperti LMJ) */
+.lmj-wa-float__pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.5);
+  animation: waPulse 2s ease-out infinite;
+}
+
+@keyframes waPulse {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ─── RESPONSIVE ──────────────────────────── */
+@media (max-width: 600px) {
+  .lmj-grid {
+    grid-template-columns: 1fr;
+  }
+  .lmj-keunggulan__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .lmj-hero { min-height: 400px; }
+}
+
+/* ═════════════════════════════════════════════
+   SEKSI BAWAH TAMBAHAN (GAYA LMJ RENT CAR)
+   ═════════════════════════════════════════════ */
+
+/* ─── 4 LANGKAH CARA SEWA ─── */
+.lmj-steps__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 992px) {
+  .lmj-steps__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .lmj-steps__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lmj-step-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 22px;
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.lmj-step-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lmj-step-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(198, 162, 76, 0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 24px rgba(198, 162, 76, 0.12);
+}
+
+.lmj-step-card:hover::before {
+  opacity: 1;
+}
+
+.lmj-step-badge {
+  font-family: var(--font-fraunces);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lmj-step-icon {
+  font-size: 20px;
+  background: rgba(198, 162, 76, 0.12);
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(198, 162, 76, 0.3);
+}
+
+.lmj-step-title {
+  font-family: var(--font-inter);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.lmj-step-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ─── PAKET LAYANAN SPESIALIS ─── */
+.lmj-services__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .lmj-services__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lmj-service-card {
+  background: linear-gradient(145deg, rgba(27, 30, 38, 0.7) 0%, rgba(21, 23, 29, 0.9) 100%);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 26px 22px;
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.lmj-service-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(198, 162, 76, 0.45);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5), 0 0 20px rgba(198, 162, 76, 0.1);
+}
+
+.lmj-service-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: rgba(198, 162, 76, 0.12);
+  border: 1px solid rgba(198, 162, 76, 0.35);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+
+.lmj-service-title {
+  font-family: var(--font-fraunces);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.lmj-service-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.lmj-service-perk {
+  margin-top: auto;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ─── STATISTIK BANNER (ANGKA LMJ) ─── */
+.lmj-stats-banner {
+  background: var(--cta-bg);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 44px 36px;
+  margin: 40px 0;
+  box-shadow: 0 16px 40px var(--shadow-color);
+}
+
+.lmj-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .lmj-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .lmj-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lmj-stat-box {
+  padding: 10px;
+}
+
+.lmj-stat-num {
+  font-family: var(--font-fraunces);
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1.1;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.lmj-stat-label {
+  font-family: var(--font-inter);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.lmj-stat-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ─── TESTIMONI PELANGGAN VIP ─── */
+.lmj-testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+@media (max-width: 960px) {
+  .lmj-testi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lmj-testi-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.lmj-testi-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(198, 162, 76, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+
+.lmj-testi-stars {
+  color: #ffb800;
+  font-size: 17px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.lmj-testi-quote {
+  font-family: var(--font-inter);
+  font-size: 13.5px;
+  color: #d1d4dc;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.lmj-testi-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.lmj-testi-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-fraunces);
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lmj-testi-meta strong {
+  font-size: 13.5px;
+  color: var(--text);
+  display: block;
+}
+
+.lmj-testi-meta span {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.lmj-testi-verified {
+  font-size: 10.5px;
+  color: #7fb88a;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+/* ─── CAKUPAN AREA LAYANAN ─── */
+.lmj-coverage {
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px;
+  margin: 36px 0;
+  text-align: center;
+}
+
+.lmj-coverage-tags {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.lmj-coverage-tag {
+  background: var(--surface);
+  border: 1px solid rgba(198, 162, 76, 0.3);
+  color: var(--text);
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+.lmj-coverage-tag:hover {
+  background: rgba(198, 162, 76, 0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* ─── CALL TO ACTION BANNER ─── */
+.lmj-cta-box {
+  position: relative;
+  background: var(--cta-bg);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 56px 40px;
+  text-align: center;
+  margin: 48px 0;
+  box-shadow: 0 16px 40px var(--shadow-color);
+  overflow: hidden;
+}
+
+.lmj-cta-box::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 380px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(198, 162, 76, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.lmj-cta-title {
+  font-family: var(--font-fraunces);
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.lmj-cta-desc {
+  font-family: var(--font-inter);
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto 28px auto;
+  line-height: 1.6;
+}
+
+.lmj-cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ─── LUXURY FOOTER ─── */
+.lmj-footer {
+  background: var(--footer-bg);
+  border-top: 1px solid var(--line);
+  margin-top: 60px;
+  padding: 60px 48px 28px 48px;
+}
+
+.lmj-footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 960px) {
+  .lmj-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 580px) {
+  .lmj-footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .lmj-footer {
+    padding: 40px 24px 24px 24px;
+  }
+}
+
+.lmj-footer-brand-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.lmj-footer-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.lmj-footer-socials {
+  display: flex;
+  gap: 10px;
+}
+
+.lmj-footer-social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.lmj-footer-social-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.lmj-footer-heading {
+  font-family: var(--font-fraunces);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 18px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.lmj-footer-heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.lmj-footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lmj-footer-links a {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.lmj-footer-links a:hover {
+  color: var(--gold);
+  transform: translateX(4px);
+}
+
+.lmj-footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.lmj-footer-contact-item strong {
+  color: var(--text);
+  display: block;
+}
+
+.lmj-footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+  color: #646875;
+}
+
+.lmj-footer-bottom-links {
+  display: flex;
+  gap: 20px;
+}
+
+.lmj-footer-bottom-links a {
+  color: #646875;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.lmj-footer-bottom-links a:hover {
+  color: var(--gold);
+}
+
+/* ─── MODAL LOGIN WAJIB ─── */
+.lmj-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalOverlayFade 0.3s ease both;
+}
+
+@keyframes modalOverlayFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lmj-modal-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface);
+  border: 1px solid var(--gold);
+  border-radius: 24px;
+  padding: 36px 32px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(198, 162, 76, 0.2);
+  animation: modalEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes modalEnter {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.lmj-modal-title {
+  font-family: var(--font-fraunces);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.lmj-modal-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* ══════════════════════════════════════════════
+   SEARCH & FILTER COMPONENT STYLES
+   ══════════════════════════════════════════════ */
+.lmj-catalog-filter {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 36px;
+  box-shadow: 0 12px 36px var(--shadow-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lmj-catalog-filter:focus-within {
+  border-color: rgba(198, 162, 76, 0.4);
+  box-shadow: 0 16px 44px var(--shadow-color), 0 0 0 1px rgba(198, 162, 76, 0.15);
+}
+
+.lmj-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.lmj-search-icon {
+  position: absolute;
+  left: 18px;
+  font-size: 18px;
+  color: var(--gold);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.lmj-search-input {
+  width: 100%;
+  padding: 15px 46px 15px 48px;
+  font-family: var(--font-inter);
+  font-size: 15px;
+  color: var(--text);
+  background: var(--surface2);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lmj-search-input::placeholder {
+  color: var(--muted);
+  opacity: 0.75;
+}
+
+.lmj-search-input:focus {
+  border-color: var(--gold);
+  background: var(--bg);
+  box-shadow: 0 0 0 3px rgba(198, 162, 76, 0.2);
+}
+
+.lmj-search-clear {
+  position: absolute;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.lmj-search-clear:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Category Tabs */
+.lmj-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.lmj-tab-pill {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: 1px solid var(--line);
+  background: var(--surface2);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.lmj-tab-pill:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.lmj-tab-pill.active {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light, #c6a24c) 100%);
+  color: var(--btn-text);
+  border-color: var(--gold);
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(198, 162, 76, 0.35);
+  transform: translateY(-2px);
+}
+
+.lmj-tab-count {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+}
+
+.lmj-tab-pill.active .lmj-tab-count {
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+}
+
+/* Dropdown Filters Row */
+.lmj-filter-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.lmj-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lmj-filter-label {
+  font-family: var(--font-inter);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.lmj-filter-select {
+  padding: 10px 14px;
+  font-family: var(--font-inter);
+  font-size: 13.5px;
+  color: var(--text);
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lmj-filter-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(198, 162, 76, 0.2);
+}
+
+.lmj-filter-select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Filter Summary Bar */
+.lmj-filter-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+
+.lmj-filter-count {
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.lmj-filter-count strong {
+  color: var(--gold);
+}
+
+.lmj-filter-reset-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.lmj-filter-reset-btn:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* Card badges */
+.lmj-card__badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  z-index: 2;
+}
+
+.lmj-badge-cat {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--card-glass);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--gold);
+  border: 1px solid var(--card-glass-border);
+}
+
+.lmj-badge-rating {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 20px;
+  background: var(--card-glass);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #d97706;
+  border: 1px solid rgba(217, 119, 6, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.lmj-card__spek-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 16px;
+}
+
+.lmj-spek-chip {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--surface2);
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+
+/* Empty State */
+.lmj-empty-state {
+  text-align: center;
+  padding: 56px 24px;
+  background: var(--surface);
+  border: 1.5px dashed var(--line);
+  border-radius: 18px;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+.lmj-empty-icon {
+  font-size: 52px;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.lmj-empty-title {
+  font-family: var(--font-fraunces);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.lmj-empty-desc {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+/* ─── KETERSEDIAAN UNIT (STOCK & AVAILABILITY) ─── */
+.lmj-badge-stock {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.lmj-badge-stock--available {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.45);
+}
+
+.lmj-badge-stock--empty {
+  background: rgba(239, 68, 68, 0.22);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+}
+
+.lmj-stock-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.lmj-stock-dot.red {
+  background: #ef4444;
+  box-shadow: 0 0 6px #ef4444;
+}
+
+/* Card Stock Box */
+.lmj-card__stock-box {
+  background: var(--surface2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lmj-stock-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  flex-wrap: wrap;
+}
+
+.lmj-stock-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lmj-stock-item.available {
+  color: #10b981;
+}
+
+.lmj-stock-item.available strong {
+  color: #10b981;
+}
+
+.lmj-stock-item.unavailable {
+  color: #f59e0b;
+}
+
+.lmj-stock-item.unavailable strong {
+  color: #f59e0b;
+}
+
+.lmj-stock-bar {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+[data-theme="light"] .lmj-stock-bar {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.lmj-stock-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.lmj-stock-bar-fill.empty {
+  background: #ef4444;
+}
+
+.lmj-stock-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10.5px;
+  color: var(--muted);
+}
+
+.lmj-stock-percent {
+  font-weight: 600;
+  color: var(--gold);
+}
+
+/* Disabled button on unavailable car */
+.lmj-card__btn--disabled {
+  opacity: 0.65;
+  cursor: not-allowed !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.08) !important;
+}
+
+.lmj-card__btn--disabled:hover {
+  transform: none !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  color: #ef4444 !important;
+}
+
+/* Fleet Stock Banner */
+.lmj-fleet-stock-banner {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px var(--shadow-color);
+  flex-wrap: wrap;
+}
+
+.lmj-fleet-stock-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lmj-fleet-stock-icon {
+  font-size: 24px;
+}
+
+.lmj-fleet-stock-val {
+  display: block;
+  font-family: var(--font-fraunces);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.lmj-fleet-stock-lbl {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.lmj-fleet-stock-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--line);
+}
+
+@media (max-width: 640px) {
+  .lmj-fleet-stock-divider {
+    display: none;
+  }
+  .lmj-fleet-stock-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+}
+
+/* Alert on booking when unit is empty */
+.lmj-summary-unavailable-alert {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 14px;
+  margin-bottom: 4px;
+}
+
+.lmj-btn--disabled {
+  background: var(--surface2) !important;
+  color: var(--muted) !important;
+  border: 1px solid var(--line) !important;
+  cursor: not-allowed !important;
+  opacity: 0.7;
+}
+
+
